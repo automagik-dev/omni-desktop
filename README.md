@@ -1,3 +1,5 @@
+> **Omni desktop moved.** It is now the Automagik desktop app, built and released from [automagik-dev/automagik](https://github.com/automagik-dev/automagik) (`apps/desktop`). An installed Omni desktop updates into it by itself and keeps everything; new downloads are on [Automagik's releases](https://github.com/automagik-dev/automagik/releases/latest). This repository's releases stay up for the copies already out there.
+
 <p align="center"><img src="assets/icon.png" width="112" alt="The Omni octopus"></p>
 
 <h1 align="center">Omni</h1>

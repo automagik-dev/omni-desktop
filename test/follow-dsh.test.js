@@ -23,9 +23,12 @@ test('anything but an exact version is refused', () => {
   }
 })
 
-test('follow-omni moves the runtime with omni.json, from the release it carries', () => {
-  const text = readFileSync(new URL('../.github/workflows/follow-omni.yml', import.meta.url), 'utf8')
-  assert.match(text, /apps\/omni-ui-dsh\/dev\/harness\/package\.json\?ref=v\$\{VERSION\}/)
-  assert.match(text, /node scripts\/follow-dsh\.mjs "\$\{dsh\}"/)
-  assert.ok(text.indexOf('follow-dsh.mjs') < text.indexOf('git commit -qam'), 'the runtime moves in the same commit')
+// The repository's last release is the Automagik desktop app itself (bridge.yml): it builds
+// automagik-dev/automagik at a release tag, a build that follows that repository's releases.
+test('the bridge builds an Automagik release tag that follows automagik-dev/automagik', () => {
+  const text = readFileSync(new URL('../.github/workflows/bridge.yml', import.meta.url), 'utf8')
+  assert.equal(text.match(/repository: automagik-dev\/automagik/g)?.length, 2)
+  assert.match(text, /\^v3\\\.\[0-9\]\{6\}\\\.\[0-9\]\+\$/)
+  assert.match(text, /repos\/automagik-dev\/automagik\/releases" apps\/desktop\/src\/update\.js/)
+  assert.match(text, /MAC_CSC_LINK: \$\{\{ secrets\.MAC_CSC_LINK \}\}/)
 })
