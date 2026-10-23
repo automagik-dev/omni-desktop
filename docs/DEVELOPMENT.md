@@ -38,7 +38,7 @@ downloads the build for this machine from this repository's releases, checks it 
 
 `omni.json` pins the Omni release the app is built from: its version and commit. The build takes Omni's plugins from that commit (`apps/*-dsh` in Omni), packs each with `npm pack`, and refuses one whose version is not that Omni's. It also refuses a dsh other than the one Omni tests its plugins on (`runtime/package.json` against Omni's `apps/omni-ui-dsh/dev/harness`).
 
-`follow-omni.yml` checks Omni's releases every 30 minutes. When Omni has cut a newer one, it moves `omni.json` and the app's version to it, commits that, and releases the app at the same version. Dispatch it to do so at once.
+`follow-omni.yml` followed Omni's releases until the app moved to automagik-dev/automagik; it is gone. The last release here is made by `bridge.yml`: Automagik's desktop app built from one automagik-dev/automagik release tag and signed with this repository's secrets, so installed copies update into it and from then on follow automagik-dev/automagik's releases.
 
 ## Build
 
